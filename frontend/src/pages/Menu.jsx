@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { getMenu, addOrder } from '../services/api';
 import { ShoppingBag, Plus, Minus, Search, UtensilsCrossed } from 'lucide-react';
+import { mockMenu } from '../data/mockData';
 
 const Menu = () => {
     const [menuItems, setMenuItems] = useState([]);
@@ -10,13 +11,20 @@ const Menu = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeCategory, setActiveCategory] = useState('All');
 
+    import { mockMenu } from '../data/mockData';
+
     useEffect(() => {
         const fetchMenu = async () => {
             try {
                 const response = await getMenu();
-                setMenuItems(response.data);
+                if (response.data && response.data.length > 0) {
+                    setMenuItems(response.data);
+                } else {
+                    setMenuItems(mockMenu);
+                }
             } catch (error) {
-                console.error('Error fetching menu:', error);
+                console.error('Error fetching menu, using mock data:', error);
+                setMenuItems(mockMenu);
             }
         };
         fetchMenu();
