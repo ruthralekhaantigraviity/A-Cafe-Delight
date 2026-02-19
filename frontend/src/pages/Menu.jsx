@@ -11,7 +11,7 @@ const Menu = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeCategory, setActiveCategory] = useState('All');
 
-    import { mockMenu } from '../data/mockData';
+
 
     useEffect(() => {
         const fetchMenu = async () => {

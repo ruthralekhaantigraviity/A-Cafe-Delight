@@ -15,7 +15,7 @@ const Booking = () => {
     });
     const [success, setSuccess] = useState(false);
 
-    import { mockTables } from '../data/mockData';
+
 
     useEffect(() => {
         fetchTables();
